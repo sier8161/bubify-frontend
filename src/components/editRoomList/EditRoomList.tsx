@@ -34,6 +34,10 @@ function EditRoomList(props: Props) {
 
   async function handleDeleteRoom(name: String) {
     const response = await axios.delete("/course/room/" + name);
+    if (response?.data) {
+        toast("Removed room", { type: "success" })
+        setRoomList(response.data.rooms);
+      }
   }
 
   async function handleGetRooms() {
